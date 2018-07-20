@@ -12,7 +12,7 @@ import './App.css'
 class App extends Component {
 
   state = {
-      hello: 'Parent Component'
+      hello: 'Material UI'
     }
   
 
