@@ -49,6 +49,7 @@ class App extends Component {
 
   handleStlyeMainContent = () =>{
     if( this.state.sidebarValue == true && window.innerWidth < 900 ){
+      console.log("test if working")
       return {display:'none'}
     }
       return {}
@@ -101,7 +102,7 @@ class App extends Component {
             </div>
             : null}
             {/* css overlap */}
-          <div className="main-content" style={this.state.handleStlyeMainContent}>
+          <div className="main-content" style={this.handleStlyeMainContent()}>
 
             <Routes />
 
