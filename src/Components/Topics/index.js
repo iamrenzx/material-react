@@ -2,15 +2,15 @@ import React from 'react'
 import {Link,Route  } from 'react-router-dom'
 
 
-const Topics = ({ match }) => (
+const Topics = ({ match,pokeName,trainer,lel }) => (
     <div>
-      <h2>Topics</h2>
+      <h2>Topics {trainer}</h2>
       <ul>
         <li>
-          <Link to={`${match.url}/rendering`}>Rendering with React</Link>
+          <Link to={`${match.url}/rendering`}>Rendering with React my {pokeName}</Link>
         </li>
         <li>
-          <Link to={`${match.url}/home`}>Home</Link>
+          <Link to={`${match.url}/home`}>Home {lel.wew}</Link>
         </li>
         <li>
           <Link to={`${match.url}/props-v-state`}>Props v. State</Link>

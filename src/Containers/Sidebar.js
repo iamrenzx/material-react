@@ -19,9 +19,8 @@ import {
 import { Link } from 'react-router-dom';
 
 
-//dont delete transition
 
-//transition: transform 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+
 
 const styles = {
   dashboardMargin: {
@@ -29,11 +28,14 @@ const styles = {
   }
 }
 
+
+
 class Sidebar extends Component {
   state = {
     openAccounting: false,
     openInventory: false
   };
+
 
   handleClickAccounting = () => {
     this.setState(state => ({ openAccounting: !state.openAccounting }));
@@ -45,6 +47,7 @@ class Sidebar extends Component {
 
     return (
       <div style={styles.dashboardMargin}>
+      
         <List
           component="nav"
           subheader={<ListSubheader component="div"></ListSubheader>}
@@ -58,13 +61,13 @@ class Sidebar extends Component {
             </ListItem>
           </Link>
 
-          <Link to="/topics">
+          <Link to="/pokemon">
             <ListItem button>
 
               <ListItemIcon>
                 <Group />
               </ListItemIcon>
-              <ListItemText inset primary="Contacts" />
+              <ListItemText inset primary="Pokemon" />
             </ListItem>
           </Link>
 

@@ -9,14 +9,56 @@ import Sidebar from '../Containers/Sidebar'
 import Grid from '@material-ui/core/Grid';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import './App.css'
+// import { getUser } from '../Services/Users'
+
+
 class App extends Component {
 
-  state = {
-      hello: 'Material UI'
+  constructor(props) {
+    super(props);
+    this.state = {
+      sidebarValue: true,
     }
-  
+  }
+
+  componentDidMount() {
+
+    //for mobile
+    if (window.innerWidth < 900) {
+      this.setState({
+        sidebarValue: false
+      })
+    }
+
+
+  }
+
+
+  handleSidebarValue = () => {
+    this.setState({
+      sidebarValue: !this.state.sidebarValue
+    })
+  }
+
+  handleStyleSidebar = () =>{
+    if( this.state.sidebarValue ){
+      return {}
+    }
+      return {display:'none'}
+  }
+
+  handleStlyeMainContent = () =>{
+    if( this.state.sidebarValue == true && window.innerWidth < 900 ){
+      return {display:'none'}
+    }
+      return {}
+  }
 
   render() {
+
+    let { sidebarValue } = this.state
+
+
 
     const theme = createMuiTheme({
       palette: {
@@ -29,46 +71,48 @@ class App extends Component {
 
         },
         secondary: {
-        // //   light: '#0066ff',
+          // //   light: '#0066ff',
           main: '#ffffff',
-        // //   // dark: will be calculated from palette.secondary.main,
-        // //   contrastText: '#ffcc00',
+          // //   // dark: will be calculated from palette.secondary.main,
+          // //   contrastText: '#ffcc00',
         },
         // error: will use the default color
       },
-      typography:{
-        fontSize:12,
-        fontFamily:[
+      typography: {
+        fontSize: 12,
+        fontFamily: [
           "Roboto", "Helvetica", "Arial", "sans-serif"
         ].join(','),
       },
     });
 
-    
+
+    return <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
 
 
-    return     <BrowserRouter>
-    <MuiThemeProvider theme={theme}>
-    
-    
-    <Header hello={this.state.hello} />
-    <div className="container">
-    <div className="sidebar">  
-    <Sidebar />
-    </div>
+        <Header sidebarValue={this.handleSidebarValue} />
 
-    <div className="main-content">
+        <div className="container">
+        {/* conditional rendering */}
+          {sidebarValue ?
+            <div className="sidebar">
+              <Sidebar />
+            </div>
+            : null}
+            {/* css overlap */}
+          <div className="main-content" style={this.state.handleStlyeMainContent}>
 
-   
-        <Routes />
+            <Routes />
 
-    </div>
-    </div>
+          </div>
 
-    <Footer />  
- 
-    </MuiThemeProvider>
-      
+        </div>
+
+        <Footer />
+
+      </MuiThemeProvider>
+
     </BrowserRouter>
   }
 }
